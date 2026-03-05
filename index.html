@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Naruto Idle - Sennin Mode V2</title>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="game-container">
+    <header class="character-header">
+        <div class="avatar-frame">FOTO DEL<br>SHINOBI 🦊</div>
+        <div class="stats-panel">
+            <div class="char-name">Naruto Uzumaki 🐸</div>
+            <div class="base-stats">
+                <span>LVL: 55</span>
+                <span>RANGO: JONIN</span>
+            </div>
+            <div class="base-stats">
+                <span>⚔️ ATK: 4,250</span>
+                <span>🛡️ DEF: 3,100</span>
+            </div>
+            
+            <div class="bar-wrapper">
+                <div class="bar-hp" id="hp-bar"></div>
+                <div class="bar-text" id="hp-text">HP: 8000 / 80%</div>
+            </div>
+            <div class="bar-wrapper">
+                <div class="bar-mp" id="mp-bar"></div>
+                <div class="bar-text" id="mp-text">MP: 3250 / 65%</div>
+            </div>
+
+            <div class="currency-info">
+                <span id="player-exp">EXP: 7500 / 10000 ⚡</span>
+                <span id="player-gold">ORO: 50,000 💰</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="mission-display">
+        <div class="mission-title">📜 MISIONES DE CLAN</div>
+        <p>Actual: <strong id="mission-name">"Infiltración en la Aldea de la Lluvia"</strong></p>
+        <p style="color: #ddd; margin-top: 8px;" id="mission-desc">Objetivo: Derrota a los subordinados de Pain para desbloquear recompensas de rango S.</p>
+        
+        <div class="event-box">
+            <div class="fading-text" id="event-timer">⚠️ EVENTO SEMANAL: ¡Doble Oro en Invocaciones activado! Termina en: 2d 14h ⚠️</div>
+        </div>
+    </main>
+
+    <nav class="menu-grid">
+        <button class="btn-action">👤<br>HEROE</button>
+        <button class="btn-action">📜<br>MISIONES</button>
+        <button class="btn-action">🤝<br>CLANES</button>
+        <button class="btn-action">📅<br>EVENTOS</button>
+        <button class="btn-action">🌀<br>JUTSUS</button>
+        <button class="btn-action">⚔️<br>BATALLAS</button>
+        <button class="btn-action">🐸<br>INVOCAR</button>
+        <button class="btn-action">🌳<br>ARBOL</button>
+        <button class="btn-action">⚙️<br>AJUSTES</button>
+    </nav>
+</div>
+
+<script src="config.js"></script>
+<script src="player.js"></script>
+<script src="inventory.js"></script>
+<script src="clans.js"></script>
+<script src="events.js"></script>
+<script src="missions.js"></script>
+<script src="combat.js"></script>
+<script src="jutsus.js"></script>
+<script src="summon.js"></script>
+<script src="ui-controller.js"></script>
+<script src="save-system.js"></script>
+<script src="main.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if(typeof UIController !== 'undefined') {
+            UIController.init();
+        }
+    });
+</script>
+
+</body>
+</html>

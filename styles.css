@@ -1,0 +1,362 @@
+/* 1. CONFIGURACIÓN DE COLORES Y VARIABLES */
+:root {
+    --blanco-oscuro: #e5e5e5;
+    --negro-claro: #1a1a1a;
+    --naranja-sennin: #ff9100;
+    --hp-color: #ff3e3e;
+    --mp-color: #2e86de;
+}
+
+/* 2. RESET Y BASES */
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* 3. CONTENEDOR PRINCIPAL (VERTICAL) */
+.game-container {
+    width: 100%;
+    max-width: 450px;
+    height: 100%;    
+    background-color: var(--blanco-oscuro);
+    border: 4px solid var(--negro-claro);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 0 30px rgba(255, 145, 0, 0.3);
+}
+
+/* 4. SECCIÓN CABECERA (STATS) */
+.character-header {
+    flex-shrink: 0;
+    background: var(--negro-claro);
+    color: white;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 12px;
+    border-bottom: 4px solid var(--naranja-sennin);
+}
+
+.avatar-frame {
+    width: 80px;
+    height: 80px;
+    background: #333;
+    border: 3px solid var(--naranja-sennin);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 10px;
+    text-align: center;
+    color: var(--naranja-sennin);
+}
+
+.stats-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.char-name {
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--naranja-sennin);
+    text-transform: uppercase;
+}
+
+.base-stats {
+    font-size: 10px;
+    display: flex;
+    justify-content: space-between;
+    color: #bbb;
+}
+
+/* 5. BARRAS DE VIDA Y CHAKRA */
+.bar-wrapper {
+    width: 100%;
+    height: 14px;
+    background: #444;
+    border-radius: 2px;
+    position: relative;
+    margin: 1px 0;
+    border: 1px solid #000;
+}
+
+.bar-hp { 
+    width: 80%; 
+    height: 100%; 
+    background: var(--hp-color); 
+    transition: 0.3s; 
+}
+
+.bar-mp { 
+    width: 65%; 
+    height: 100%; 
+    background: var(--mp-color); 
+    transition: 0.3s; 
+}
+
+.bar-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 0;
+    font-size: 9px;
+    font-weight: bold;
+    color: #fff;
+    line-height: 14px;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.currency-info {
+    font-size: 9px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1px;
+    color: #ffeb3b;
+}
+
+/* 6. PANTALLA DE MISIONES Y EVENTOS */
+.mission-display {
+    flex-grow: 1;
+    margin: 10px;
+    background: rgba(26, 26, 26, 0.85); 
+    border: 3px solid var(--naranja-sennin);
+    padding: 20px; 
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.7);
+    overflow: hidden;
+}
+
+.mission-title {
+    font-size: 22px; 
+    color: var(--naranja-sennin);
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.mission-display p {
+    font-size: 15px; 
+    line-height: 1.3;
+}
+
+.event-box {
+    margin-top: 15px;
+    background: rgba(0,0,0,0.5);
+    padding: 10px;
+    border: 1px solid var(--naranja-sennin);
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 7. MENÚ DE BOTONES INFERIOR */
+.menu-grid {
+    flex-shrink: 0;
+    padding: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    background: #ccc;
+    border-top: 2px solid var(--negro-claro);
+}
+
+.btn-action {
+    height: 53px; 
+    background-color: #f7b731; 
+    border: 2px solid var(--negro-claro);
+    font-weight: 800;
+    font-size: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.btn-action:active {
+    background-color: var(--naranja-sennin);
+    color: white;
+}
+
+/* 8. ANIMACIONES */
+.fading-text {
+    color: #00ff88;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+    animation: softFade 2.5s ease-in-out infinite;
+}
+
+@keyframes softFade {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.98); }
+}
+
+/* ----------------------------------------------------------- */
+/* NUEVAS MODIFICACIONES PARA SECCIÓN HÉROE (NO BORRAR NADA SUPERIOR) */
+/* ----------------------------------------------------------- */
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    position: relative; /* Base para el posicionamiento absoluto interno */
+}
+
+.hero-main-photo {
+    width: 120px;
+    height: 120px;
+    border: 2px solid var(--naranja-sennin);
+    background: #222;
+    margin-top: 10px;
+    position: absolute; /* Cambiado a absoluto para control total */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-name-label {
+    font-size: 12px;
+    color: #fff;
+    margin-bottom: 4px;
+    text-align: center;
+    position: absolute;
+}
+
+.hero-stats-row {
+    display: block; /* Cambiado para permitir que las columnas se muevan solas */
+    width: 100%;
+    position: relative;
+    height: 100%;
+}
+
+.hero-col {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 11px;
+    text-align: left;
+    position: absolute;
+}
+
+.hero-col-right {
+    text-align: right;
+    position: absolute;
+}
+
+/* Barras Brillantes Hero */
+.hero-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: #333;
+    border: 1px solid #000;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 2px;
+}
+
+.hero-bar-hp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff0000, #ff5e5e);
+    box-shadow: 0 0 8px #ff3e3e;
+}
+
+.hero-bar-mp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #004cff, #5e97ff);
+    box-shadow: 0 0 8px #2e86de;
+}
+
+.hero-rango {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--naranja-sennin);
+    position: absolute;
+}
+
+.hero-divider {
+    width: 90%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin: 12px 0;
+    position: absolute;
+}
+
+/* Ranuras de Equipo */
+.equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    padding: 5px;
+    position: absolute;
+}
+
+.equip-slot {
+    aspect-ratio: 1/1;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    position: relative;
+}
+
+/* Niveles de Rareza de Bordes */
+.rarity-1 { border: 2px solid #808080; } /* Gris Lvl 1-5 */
+.rarity-2 { border: 2px solid #2ecc71; } /* Verde Lvl 5-15 */
+.rarity-3 { border: 2px solid #3498db; } /* Azul Lvl 15-25 */
+.rarity-4 { border: 2px solid #9b59b6; } /* Morado Lvl 25-35 */
+.rarity-5 { border: 2px solid #e74c3c; } /* Rojo Lvl 35-50 */
+
+.equip-icon {
+    font-size: 20px;
+}
+
+.equip-lvl {
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+    font-size: 8px;
+    color: #fff;
+}
+
+/* AJUSTES FINALES: EQUIPAMIENTO COMPACTO Y EMOJIS AMPLIADOS */
+.equipment-grid {
+    gap: 6px; /* Menos espacio entre cuadros para que quepan bien */
+}
+
+.equip-slot {
+    max-width: 55px; /* Cuadros más pequeños */
+    margin: 0 auto;
+}
+
+.equip-slot span {
+    font-size: 28px; /* Emoji más grande en el centro */
+}
